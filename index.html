@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Heart Disease Prediction System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="heart-app">
+
+        <!-- ==================== WELCOME ==================== -->
+
+        <section id="welcome-page" class="app-page active">
+
+            <div class="welcome-content">
+
+                <div class="heart-icon">❤️</div>
+
+                <h1>Heart Disease Prediction System</h1>
+
+                <p>
+                    Welcome to the Heart Disease Prediction System.
+                    Enter patient information to obtain a machine
+                    learning based prediction.
+                </p>
+
+                <button class="primary-btn" onclick="openSignup()">
+                    Get Started
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================== SIGN UP ==================== -->
+
+        <section id="signup-page" class="app-page">
+
+            <div class="auth-wrapper">
+
+                <div class="app-card auth-card">
+
+                    <h2>Create Account</h2>
+
+                    <label>Full Name</label>
+                    <input
+                        type="text"
+                        id="signup-name"
+                        placeholder="Enter your name"
+                    >
+
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        id="signup-email"
+                        placeholder="Enter your email"
+                    >
+
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        id="signup-password"
+                        placeholder="Create a password"
+                    >
+
+                    <label>Confirm Password</label>
+                    <input
+                        type="password"
+                        id="signup-confirm"
+                        placeholder="Confirm your password"
+                    >
+
+                    <button
+                        class="primary-btn full-width"
+                        onclick="createAccount()"
+                    >
+                        Sign Up
+                    </button>
+
+                    <div id="signup-message" class="message"></div>
+
+                    <div class="auth-footer">
+
+                        Already have an account?
+
+                        <span
+                            class="text-link"
+                            onclick="openLogin()"
+                        >
+                            Login
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================== LOGIN ==================== -->
+
+        <section id="login-page" class="app-page">
+
+            <div class="auth-wrapper">
+
+                <div class="app-card auth-card">
+
+                    <h2>Login</h2>
+
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        id="login-email"
+                        placeholder="Enter your email"
+                    >
+
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        id="login-password"
+                        placeholder="Enter your password"
+                    >
+
+                    <button
+                        class="primary-btn full-width"
+                        onclick="loginUser()"
+                    >
+                        Login
+                    </button>
+
+                    <div id="login-message" class="message"></div>
+
+                    <div class="auth-footer">
+
+                        Don't have an account?
+
+                        <span
+                            class="text-link"
+                            onclick="openSignup()"
+                        >
+                            Sign Up
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================== DASHBOARD ==================== -->
+
+        <section id="dashboard-page" class="app-page">
+
+            <div class="dashboard-wrapper">
+
+                <div class="top-bar">
+
+                    <h2>Heart Disease Prediction</h2>
+
+                    <button
+                        class="logout-btn"
+                        onclick="logoutUser()"
+                    >
+                        Logout
+                    </button>
+
+                </div>
+
+
+                <div class="dashboard-content">
+
+                    <div class="ready-box">
+
+                        <div class="heart-icon">❤️</div>
+
+                        <h1>Ready to Start?</h1>
+
+                        <p>
+                            Enter the patient's information to generate
+                            a heart disease prediction.
+                        </p>
+
+                        <button
+                            class="primary-btn"
+                            onclick="openPredictionForm()"
+                        >
+                            Start Prediction
+                        </button>
+
+                        <p class="disclaimer">
+                            This system is intended for educational and
+                            demonstration purposes only and should not
+                            be used as a substitute for professional
+                            medical advice.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================== PATIENT INFORMATION ==================== -->
+
+        <section id="prediction-page" class="app-page">
+
+            <div class="form-wrapper">
+
+                <div class="app-card form-card">
+
+                    <h1>Patient Information</h1>
+
+                    <div class="form-grid">
+
+
+                        <div>
+                            <label>Age</label>
+
+                            <input
+                                type="number"
+                                id="patient-age"
+                                min="1"
+                                max="120"
+                                placeholder="Enter age"
+                            >
+                        </div>
+
+
+                        <div>
+                            <label>Sex</label>
+
+                            <select id="patient-sex">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option value="M">
+                                    Male
+                                </option>
+
+                                <option value="F">
+                                    Female
+                                </option>
+
+                            </select>
+                        </div>
+
+
+                        <div>
+                            <label>Chest Pain Type</label>
+
+                            <select id="patient-chest-pain">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option value="ATA">
+                                    ATA
+                                </option>
+
+                                <option value="NAP">
+                                    NAP
+                                </option>
+
+                                <option value="TA">
+                                    TA
+                                </option>
+
+                                <option value="ASY">
+                                    ASY
+                                </option>
+
+                            </select>
+                        </div>
+
+
+                        <div>
+                            <label>Resting Blood Pressure</label>
+
+                            <input
+                                type="number"
+                                id="patient-resting-bp"
+                                min="1"
+                                max="300"
+                                placeholder="Enter Resting BP"
+                            >
+                        </div>
+
+
+                        <div>
+                            <label>Cholesterol</label>
+
+                            <input
+                                type="number"
+                                id="patient-cholesterol"
+                                min="1"
+                                max="1000"
+                                placeholder="Enter Cholesterol"
+                            >
+                        </div>
+
+
+                        <div>
+                            <label>Fasting Blood Sugar</label>
+
+                            <select id="patient-fasting-bs">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option value="0">
+                                    0 - Normal
+                                </option>
+
+                                <option value="1">
+                                    1 - High
+                                </option>
+
+                            </select>
+                        </div>
+
+
+                        <div>
+                            <label>Resting ECG</label>
+
+                            <select id="patient-resting-ecg">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option value="Normal">
+                                    Normal
+                                </option>
+
+                                <option value="ST">
+                                    ST
+                                </option>
+
+                                <option value="LVH">
+                                    LVH
+                                </option>
+
+                            </select>
+                        </div>
+
+
+                        <div>
+                            <label>Maximum Heart Rate</label>
+
+                            <input
+                                type="number"
+                                id="patient-max-hr"
+                                min="1"
+                                max="300"
+                                placeholder="Enter MaxHR"
+                            >
+                        </div>
+
+
+                        <div>
+                            <label>Exercise Angina</label>
+
+                            <select id="patient-exercise-angina">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option value="N">
+                                    No
+                                </option>
+
+                                <option value="Y">
+                                    Yes
+                                </option>
+
+                            </select>
+                        </div>
+
+
+                        <div>
+                            <label>Oldpeak</label>
+
+                            <input
+                                type="number"
+                                id="patient-oldpeak"
+                                step="0.1"
+                                placeholder="Enter Oldpeak"
+                            >
+                        </div>
+
+
+                        <div>
+                            <label>ST Slope</label>
+
+                            <select id="patient-st-slope">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option value="Down">
+                                    Down
+                                </option>
+
+                                <option value="Flat">
+                                    Flat
+                                </option>
+
+                                <option value="Up">
+                                    Up
+                                </option>
+
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                    <div id="form-message" class="message"></div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            class="secondary-btn"
+                            onclick="openDashboard()"
+                        >
+                            Back to Dashboard
+                        </button>
+
+                        <button
+                            class="primary-btn"
+                            onclick="makePrediction()"
+                        >
+                            Predict
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================== RESULT ==================== -->
+
+        <section id="result-page" class="app-page">
+
+            <div class="result-wrapper">
+
+                <div class="app-card result-card">
+
+                    <div class="result-icon">❤️</div>
+
+                    <h1>Prediction Result</h1>
+
+                   <div class="result-box">
+
+                    <h2 id="result-text">
+                        Prediction Result
+                    </h2>
+
+</div>
+
+
+                    <p>
+                        Prediction generated using the trained
+                        Gradient Boosting model.
+                    </p>
+
+
+                    <div class="result-buttons">
+
+                        <button
+                            class="secondary-btn"
+                            onclick="openDashboard()"
+                        >
+                            Dashboard
+                        </button>
+
+                        <button
+                            class="primary-btn"
+                            onclick="openPredictionForm()"
+                        >
+                            Predict Again
+                        </button>
+
+                    </div>
+
+
+                    <p class="disclaimer">
+                        This prediction is for educational purposes only
+                        and is not a medical diagnosis.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
